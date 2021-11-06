@@ -2,15 +2,30 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
 use App\Repository\TasklistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={"get","post"},
+ *     itemOperations={"get","patch","delete"},
+ *     normalizationContext={"groups"={"tasklist:read"}},
+ *     denormalizationContext={"groups"={"tasklist:write"}},
+ *     attributes={
+ *          "pagination_items_per_page" = 20
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=TasklistRepository::class)
+ * @ApiFilter(SearchFilter::class, properties={"title": "partial"})
+ * @ApiFilter(ExistsFilter::class, properties={"archivedAt"})
  */
 class Tasklist
 {
@@ -22,42 +37,59 @@ class Tasklist
     private $id;
 
     /**
+     * @Groups({"tasklist:read", "tasklist:write"})
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min=2,
+     *     max=100,
+     *     minMessage="Le titre doit compter au moins 2 caractères",
+     *     maxMessage="Le titre doit compter 100 caractères maximum"
+     * )
      */
     private $title;
 
     /**
+     * @Groups({"tasklist:read"})
      * @ORM\Column(type="datetime_immutable")
      */
     private $createdAt;
 
     /**
+     * @Groups({"tasklist:read"})
      * @ORM\Column(type="datetime_immutable")
      */
     private $updatedAt;
 
     /**
+     * @Groups({"tasklist:read"})
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $archivedAt;
 
     /**
-     * @ORM\Column(type="integer")
+     * @Groups({"tasklist:read", "tasklist:write"})
+     * @ORM\Column(type="integer", options={"default" : 0})
      */
     private $progress;
 
     /**
+     * @Groups({"tasklist:read"})
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tasklists")
      */
     private $user;
 
     /**
+     * @Groups({"tasklist:read"})
      * @ORM\OneToMany(targetEntity=Task::class, mappedBy="tasklist")
      */
     private $tasks;
 
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
+        $this->progress = 0;
         $this->tasks = new ArrayCollection();
     }
 
