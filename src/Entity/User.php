@@ -7,12 +7,22 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={"get","post"},
+ *     itemOperations={"get","patch"},
+ *     normalizationContext={"groups"={"user:read"}},
+ *     denormalizationContext={"groups"={"user:write"}},
+ * )
+ * @UniqueEntity(fields={"email"})
+ * @UniqueEntity(fields={"username"})
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -25,37 +35,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({ "user:read", "user:write" })
+     * @Assert\NotBlank
+     * @Assert\Email()
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({ "user:read"})
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Groups({ "user:write" })
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({ "user:read", "user:write" })
      */
-    private $first_name;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({ "user:read", "user:write" })
      */
-    private $last_name;
+    private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Groups({ "user:read", "user:write", "tasklist:read" })
+     * @Assert\NotBlank
      */
     private $username;
 
     /**
      * @ORM\OneToMany(targetEntity=Tasklist::class, mappedBy="user")
+     * @Groups({ "user:read", "user:write" })
      */
     private $tasklists;
 
@@ -96,7 +116,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
     }
 
     /**
@@ -155,24 +175,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
     public function setFirstName(?string $first_name): self
     {
-        $this->first_name = $first_name;
+        $this->firstName = $first_name;
 
         return $this;
     }
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
     public function setLastName(string $last_name): self
     {
-        $this->last_name = $last_name;
+        $this->lastName = $last_name;
 
         return $this;
     }

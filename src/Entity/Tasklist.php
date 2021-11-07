@@ -37,7 +37,7 @@ class Tasklist
     private $id;
 
     /**
-     * @Groups({"tasklist:read", "tasklist:write"})
+     * @Groups({"tasklist:read", "tasklist:write", "user:read"})
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -50,37 +50,37 @@ class Tasklist
     private $title;
 
     /**
-     * @Groups({"tasklist:read"})
+     * @Groups({"tasklist:read", "user:read"})
      * @ORM\Column(type="datetime_immutable")
      */
     private $createdAt;
 
     /**
-     * @Groups({"tasklist:read"})
+     * @Groups({"tasklist:read", "user:read"})
      * @ORM\Column(type="datetime_immutable")
      */
     private $updatedAt;
 
     /**
-     * @Groups({"tasklist:read"})
+     * @Groups({"tasklist:read", "user:read"})
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $archivedAt;
 
     /**
-     * @Groups({"tasklist:read", "tasklist:write"})
+     * @Groups({"tasklist:read", "tasklist:write", "user:read"})
      * @ORM\Column(type="integer", options={"default" : 0})
      */
     private $progress;
 
     /**
-     * @Groups({"tasklist:read"})
+     * @Groups({"tasklist:read", "tasklist:write"})
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tasklists")
      */
     private $user;
 
     /**
-     * @Groups({"tasklist:read"})
+     * @Groups({"tasklist:read", "user:read"})
      * @ORM\OneToMany(targetEntity=Task::class, mappedBy="tasklist")
      */
     private $tasks;
