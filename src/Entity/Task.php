@@ -66,6 +66,7 @@ class Task
     /**
      * @ORM\Column(type="integer")
      * @Groups({"task:read", "task:write"})
+     * @Assert\Choice({1,2,3})
      */
     private $priority;
 

@@ -70,6 +70,11 @@ class Tasklist
     /**
      * @Groups({"tasklist:read", "tasklist:write", "user:read"})
      * @ORM\Column(type="integer", options={"default" : 0})
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 100,
+     *      notInRangeMessage = "Progression invalide.",
+     * )
      */
     private $progress;
 
