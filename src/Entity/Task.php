@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
@@ -18,6 +21,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     }
  * )
  * @ORM\Entity(repositoryClass=TaskRepository::class)
+ * @ApiFilter(SearchFilter::class, properties={"title": "partial"})
  */
 class Task
 {
@@ -31,6 +35,12 @@ class Task
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"task:read", "task:write"})
+     * @Assert\Length(
+     *     min=2,
+     *     max=100,
+     *     minMessage="Le titre doit compter au moins 2 caractères",
+     *     maxMessage="Le titre doit compter 100 caractères maximum"
+     * )
      */
     private $title;
 
