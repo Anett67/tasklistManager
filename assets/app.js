@@ -1,7 +1,6 @@
 import './styles/app.scss';
 import React from 'react';
-import ReactDom from 'react-dom';
+import { render } from 'react-dom';
+import App from "./App/App";
 
-const el = React.createElement('h2', null, 'Coucou React');
-
-ReactDom.render(el, document.getElementById('tasklist-manager-app'));
+render(<App />, document.getElementById('tasklist-manager-app'));
