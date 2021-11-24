@@ -14,7 +14,27 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'page_title' => 'Mes listes de tâches',
+        ]);
+    }
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function login(): Response
+    {
+        return $this->render('home/index.html.twig', [
+            'page_title' => 'Se connecter',
+        ]);
+    }
+
+    /**
+     * @Route("/signin", name="signin")
+     */
+    public function signin(): Response
+    {
+        return $this->render('home/index.html.twig', [
+            'page_title' => 'S\'inscrire',
         ]);
     }
 }
