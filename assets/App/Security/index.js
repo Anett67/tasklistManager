@@ -18,7 +18,7 @@ export default class SecurityPage extends Component {
     render() {
 
         return <div className="flex mh-100-vh">
-            <div className="w-25">Image</div>
+            <div className="w-25 image-wrapper"></div>
             <div className="w-75 flex flex-column flex-center align-items-center">
                 { this.state.showLoginForm ? <LoginPage/> : <SigninPage/> }
                 <button onClick={this.handleToggleClick}>{this.state.showLoginForm ? 'Sign In' : 'Log In'}</button>
