@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 export default class LoginPage extends Component{
     constructor(props) {
@@ -8,7 +9,8 @@ export default class LoginPage extends Component{
         this.state = {
             userLoginError: '',
             passwordError: '',
-            apiError: ''
+            apiError: '',
+            isLoading: false
         };
 
         this.login = React.createRef();
@@ -34,9 +36,9 @@ export default class LoginPage extends Component{
             anyError = true;
         }
 
-        if(this.password.current.value.length < 6){
+        if(this.password.current.value.length < 1){
             this.setState({
-                passwordError: 'Le mot de passe doit contenir au moins 6 caractères.'
+                passwordError: 'Le mot de passe doit contenir au moins 1 caractères.'
             })
             anyError = true;
         }
@@ -45,14 +47,38 @@ export default class LoginPage extends Component{
             return;
         }
 
-        this.loginUser(this.login.current.value, this.login.current.value)
+        this.loginUser(this.login.current.value, this.password.current.value)
         this.login.current.value = '';
         this.password.current.value = '';
 
     }
 
     loginUser = (login, password) => {
-        console.log(login + ' ' + password)
+        this.setState({
+            isLoading: true
+        })
+
+        axios.post('/login', {
+            email: login,
+            password: password
+        }).then(response => {
+            console.log(response)
+        }).catch(error => {
+            console.error(error);
+            if(error.response.data.error){
+                this.setState({
+                    apiError: error.response.data.error
+                })
+            }else{
+                this.setState({
+                    apiError: 'Une erreur technique est survenue'
+                })
+            }
+        }).finally(() => {
+            this.setState({
+                isLoading: false
+            })
+        })
     }
 
     render() {
@@ -79,6 +105,7 @@ export default class LoginPage extends Component{
                         type="password"/>
                     {passwordError && <div className="error-message">{passwordError}</div>}
                 </div>
+                {apiError && <div className="api-error error-message">{apiError}</div>}
                 <button className={"btn btn-confirm btn--big w-100 mg-t-l mg-b-m"}>Se connecter</button>
                 <Link to="/inscription">S'inscrire</Link>
             </form>

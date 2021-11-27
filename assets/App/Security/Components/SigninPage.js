@@ -33,7 +33,7 @@ export default class SigninPage extends Component{
                     <input id={"password"} placeholder="Veuillez confirmer le mot de passe" type="password"/>
                 </div>
                 <button className={"btn btn-confirm btn--big w-100 mg-t-l mg-b-m"}>S'inscrire</button>
-                <Link to="/login" >Se connecter</Link>
+                <Link to="/connexion" >Se connecter</Link>
             </form>
         </div>
     }

@@ -153,12 +153,6 @@ a:visited {
   height: 28px;
   border-radius: 4px;
 }
-.form-ctrl .error-message {
-  font-size: 12px;
-  color: #9E5459;
-  margin-top: 2px;
-  font-weight: bold;
-}
 .form-ctrl--bg-light input {
   background-color: rgba(111, 131, 161, 0.2);
   border: 1px solid rgba(111, 131, 161, 0.96);
@@ -169,6 +163,13 @@ a:visited {
   color: rgba(111, 131, 161, 0.5);
   font-size: 12px;
   padding-left: 2px;
+}
+
+.error-message {
+  font-size: 12px;
+  color: #9E5459;
+  margin-top: 2px;
+  font-weight: bold;
 }
 
 .btn {

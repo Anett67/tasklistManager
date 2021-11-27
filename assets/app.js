@@ -10,7 +10,7 @@ render(
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<App />} />
-            <Route path="/login" element={<SecurityPage form={'login'} />} />
+            <Route path="/connexion" element={<SecurityPage form={'login'} />} />
             <Route path="/inscription" element={<SecurityPage form={'inscription'} />} />
         </Routes>
     </BrowserRouter>,

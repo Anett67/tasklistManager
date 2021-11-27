@@ -10,10 +10,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/connexion", name="app_login", methods={"POST"})
+     * @Route("/login", name="app_login", methods={"POST"})
      */
     public function login(): Response
     {
+        if(!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->json([
+                'error' => 'Invalid login request'
+            ], 400);
+        }
+
         return $this->json([
            'user' => $this->getUser() ? $this->getUser()->getUserIdentifier() : null
         ]);
