@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use ApiPlatform\Core\Api\IriConverterInterface;
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,8 +12,10 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="app_login", methods={"POST"})
+     * @param IriConverterInterface $iriConverter
+     * @return Response
      */
-    public function login(): Response
+    public function login(IriConverterInterface $iriConverter): Response
     {
         if(!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->json([
@@ -20,8 +23,15 @@ class SecurityController extends AbstractController
             ], 400);
         }
 
-        return $this->json([
-           'user' => $this->getUser() ? $this->getUser()->getUserIdentifier() : null
+        return new Response(null, 204, [
+            'Location' => $iriConverter->getIriFromItem($this->getUser())
         ]);
+    }
+
+    /**
+     * @Route("/logout", name="app_logout")
+     */
+    public function logout(){
+        throw new \Exception('Should not be reached');
     }
 }

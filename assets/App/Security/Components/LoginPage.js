@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import axios from "axios";
 
 export default class LoginPage extends Component{
@@ -62,7 +62,7 @@ export default class LoginPage extends Component{
             email: login,
             password: password
         }).then(response => {
-            console.log(response)
+
         }).catch(error => {
             console.error(error);
             if(error.response.data.error){

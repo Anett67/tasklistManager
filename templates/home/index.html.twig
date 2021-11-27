@@ -7,5 +7,10 @@
 {% endblock %}
 
 {% block body %}
+
+    <script>
+        window.user = {{ user|raw }}
+    </script>
+
     <div id="tasklist-manager-app"></div>
 {% endblock %}
