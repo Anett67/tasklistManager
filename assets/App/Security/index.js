@@ -10,9 +10,9 @@ export default class SecurityPage extends Component {
     render() {
         let formToShow;
 
-        if(this.props.form === 'login'){
-            formToShow = <LoginPage />
-        }else if(this.props.form === 'inscription'){
+        if(this.props.form === 'login') {
+            formToShow = <LoginPage/>
+        } else if (this.props.form === 'inscription') {
             formToShow = <SigninPage/>
         }
 

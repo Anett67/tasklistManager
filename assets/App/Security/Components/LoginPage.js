@@ -2,23 +2,82 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 
 export default class LoginPage extends Component{
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            userLoginError: '',
+            passwordError: '',
+            apiError: ''
+        };
+
+        this.login = React.createRef();
+        this.password = React.createRef();
+
+    }
 
     handleFormSubmit = (event) => {
         event.preventDefault()
-        console.log('Log in submit');
+
+        let anyError = false;
+
+        this.setState({
+            userLoginError: '',
+            passwordError: ''
+        })
+
+        //TODO - email validation
+        if(this.login.current.value.length < 6){
+            this.setState({
+                userLoginError: 'Veuillez renseigner un email valid.'
+            })
+            anyError = true;
+        }
+
+        if(this.password.current.value.length < 6){
+            this.setState({
+                passwordError: 'Le mot de passe doit contenir au moins 6 caractères.'
+            })
+            anyError = true;
+        }
+
+        if (anyError) {
+            return;
+        }
+
+        this.loginUser(this.login.current.value, this.login.current.value)
+        this.login.current.value = '';
+        this.password.current.value = '';
+
+    }
+
+    loginUser = (login, password) => {
+        console.log(login + ' ' + password)
     }
 
     render() {
+        const {userLoginError, passwordError, apiError} = {...this.state}
+
         return <div id="login-page">
             <h3 className={"text-xxxl mg-b-m text-primary"}>Se connecter</h3>
             <form onSubmit={this.handleFormSubmit}>
-                <div className="form-ctrl form-ctrl--bg-light">
+                <div className={`form-ctrl form-ctrl--bg-light ${userLoginError ? 'has-error' : ''}`}>
                     <label htmlFor="email">Email</label>
-                    <input id={"email"} placeholder="Votre adresse mail" type="text"/>
+                    <input
+                        id={"email"}
+                        placeholder="Votre adresse mail"
+                        ref={this.login}
+                        type="text"/>
+                    { userLoginError && <div className="error-message">{userLoginError}</div>}
                 </div>
-                <div className="form-ctrl form-ctrl--bg-light">
+                <div className={`form-ctrl form-ctrl--bg-light ${passwordError ? 'has-error' : ''}`}>
                     <label htmlFor="password">Mot de passe</label>
-                    <input id={"password"} placeholder="Mot de passe" type="text"/>
+                    <input
+                        id={"password"}
+                        placeholder="Mot de passe"
+                        ref={this.password}
+                        type="password"/>
+                    {passwordError && <div className="error-message">{passwordError}</div>}
                 </div>
                 <button className={"btn btn-confirm btn--big w-100 mg-t-l mg-b-m"}>Se connecter</button>
                 <Link to="/inscription">S'inscrire</Link>

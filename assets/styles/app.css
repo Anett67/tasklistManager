@@ -143,15 +143,21 @@ a:visited {
   flex-direction: column;
   text-align: left;
   width: 100%;
+  margin: 2px 0 10px;
 }
 .form-ctrl label {
   font-size: 14px;
   color: #C79FA2;
 }
 .form-ctrl input {
-  margin: 2px 0 10px;
   height: 28px;
   border-radius: 4px;
+}
+.form-ctrl .error-message {
+  font-size: 12px;
+  color: #9E5459;
+  margin-top: 2px;
+  font-weight: bold;
 }
 .form-ctrl--bg-light input {
   background-color: rgba(111, 131, 161, 0.2);
