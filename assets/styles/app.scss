@@ -1,6 +1,9 @@
+@import "helpers/variables";
 @import "typography/typography";
-@import "utilities/helpers";
-@import "layout/SecurityPage";
+@import "helpers/utilities";
+@import "layout/securityPage";
+@import "components/forms";
+@import "components/buttons";
 
 
 body{

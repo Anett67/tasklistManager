@@ -1,0 +1,15 @@
+.image-wrapper{
+  background-image: url("../../images/connection_page_img_4.png");
+  background-size: cover;
+  background-position: center;
+}
+
+#login-page,
+#signup-page{
+  margin-top: 20vh;
+  margin-bottom: 10px;
+  text-align: center;
+  color: $springPrimary;
+  width: 40%;
+  min-width: 400px;
+}

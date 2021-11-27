@@ -20,3 +20,12 @@ body{
 h2{
   text-transform: uppercase;
 }
+
+h3{
+  margin: 0;
+}
+
+a:active,
+a:visited{
+  color: $springDanger;
+}

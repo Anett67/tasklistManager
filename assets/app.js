@@ -11,7 +11,7 @@ render(
         <Routes>
             <Route path="/" element={<App />} />
             <Route path="/login" element={<SecurityPage form={'login'} />} />
-            <Route path="/sign-in" element={<SecurityPage form={'sign-in'} />} />
+            <Route path="/inscription" element={<SecurityPage form={'inscription'} />} />
         </Routes>
     </BrowserRouter>,
     rootElement

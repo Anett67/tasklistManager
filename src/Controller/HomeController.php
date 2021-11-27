@@ -29,7 +29,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/signin", name="signin")
+     * @Route("/inscription", name="inscription")
      */
     public function signin(): Response
     {

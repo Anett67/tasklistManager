@@ -1,0 +1,24 @@
+.btn {
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+  transition: all .3s;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+
+  &-confirm {
+    color: white;
+    border: 1px solid $springSecondary;
+    background-color: $springSecondary;
+
+    &:hover {
+      background-color: darken($springSecondary, 10%);
+    }
+  }
+
+  &--big {
+    padding: 8px;
+  }
+}
+

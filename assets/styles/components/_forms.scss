@@ -1,0 +1,32 @@
+.form-ctrl {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+
+  label {
+    font-size: 14px;
+    color: $springSecondary;
+  }
+
+  input {
+    margin: 2px 0 10px;
+    height: 28px;
+    border-radius: 4px;
+  }
+
+  &--bg-light {
+    input {
+      background-color: $springPrimaryLight;
+      border: 1px solid $springPrimaryDark;
+      outline: $springPrimaryDark;
+      color: $springPrimary;
+
+      &::placeholder {
+        color: $springPrimaryMedium;
+        font-size: 12px;
+        padding-left: 2px;
+      }
+    }
+  }
+}

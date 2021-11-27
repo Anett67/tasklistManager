@@ -1,31 +1,37 @@
 import React, { Component } from 'react';
 
 export default class SigninPage extends Component{
+
+    handleFormSubmit = (event) => {
+        event.preventDefault()
+        console.log('Sign in submit');
+    }
+
     render() {
-        return <div id="signin-page">
-            <h3>Créer un compte</h3>
-            <form>
-                <div className="form-ctrl dark">
+        return <div id="signup-page">
+            <h3 className={"text-xxxl mg-b-m text-primary"}>Créer un compte</h3>
+            <form onSubmit={this.handleFormSubmit}>
+                <div className="form-ctrl form-ctrl--bg-light">
                     <label htmlFor="first-name">Prénom</label>
-                    <input id={"first-name"} type="text"/>
+                    <input id={"first-name"} placeholder="Votre prénom" type="text"/>
                 </div>
-                <div className="form-ctrl dark">
+                <div className="form-ctrl form-ctrl--bg-light">
                     <label htmlFor="last-name">Nom</label>
-                    <input id={"last-name"} type="text"/>
+                    <input id={"last-name"} placeholder="Votre nom" type="text"/>
                 </div>
-                <div className="form-ctrl dark">
+                <div className="form-ctrl form-ctrl--bg-light">
                     <label htmlFor="email">Email</label>
-                    <input id={"email"} type="text"/>
+                    <input id={"email"} placeholder="Votre adresse mail" type="text"/>
                 </div>
-                <div className="form-ctrl dark">
+                <div className="form-ctrl form-ctrl--bg-light">
                     <label htmlFor="password">Mot de passe</label>
-                    <input id={"password"} type="password"/>
+                    <input id={"password"} placeholder="Votre mot de passe" type="password"/>
                 </div>
-                <div className="form-ctrl dark">
-                    <label htmlFor="password">Confirmer le m ot de passe</label>
-                    <input id={"password"} type="password"/>
+                <div className="form-ctrl form-ctrl--bg-light">
+                    <label htmlFor="password">Confirmer le mot de passe</label>
+                    <input id={"password"} placeholder="Veuillez confirmer le mot de passe" type="password"/>
                 </div>
-                <button className={"confirm-btn"}>S'inscrire</button>
+                <button className={"btn btn-confirm btn--big w-100 mg-t-l"}>S'inscrire</button>
             </form>
         </div>
     }

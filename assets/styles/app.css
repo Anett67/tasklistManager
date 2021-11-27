@@ -18,6 +18,15 @@ h2 {
   text-transform: uppercase;
 }
 
+h3 {
+  margin: 0;
+}
+
+a:active,
+a:visited {
+  color: #9E5459;
+}
+
 .pd {
   padding: 16px;
 }
@@ -62,10 +71,93 @@ h2 {
   height: 100%;
 }
 
+.br-4 {
+  border-radius: 4px;
+}
+
+.text-xxxl {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.text-primary {
+  color: #6F83A1;
+}
+
+.mg-b-m {
+  margin-bottom: 10px;
+}
+
+.mg-t-m {
+  margin-top: 10px;
+}
+
+.mg-t-l {
+  margin-top: 20px;
+}
+
 .image-wrapper {
   background-image: url("../../images/connection_page_img_4.png");
   background-size: cover;
   background-position: center;
+}
+
+#login-page,
+#signup-page {
+  margin-top: 20vh;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #6F83A1;
+  width: 40%;
+  min-width: 400px;
+}
+
+.form-ctrl {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+}
+.form-ctrl label {
+  font-size: 14px;
+  color: #C79FA2;
+}
+.form-ctrl input {
+  margin: 2px 0 10px;
+  height: 28px;
+  border-radius: 4px;
+}
+.form-ctrl--bg-light input {
+  background-color: rgba(111, 131, 161, 0.2);
+  border: 1px solid rgba(111, 131, 161, 0.96);
+  outline: rgba(111, 131, 161, 0.96);
+  color: #6F83A1;
+}
+.form-ctrl--bg-light input::placeholder {
+  color: rgba(111, 131, 161, 0.5);
+  font-size: 12px;
+  padding-left: 2px;
+}
+
+.btn {
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  transition: all 0.3s;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.btn-confirm {
+  color: white;
+  border: 1px solid #C79FA2;
+  background-color: #C79FA2;
+}
+.btn-confirm:hover {
+  background-color: #b47f83;
+}
+.btn--big {
+  padding: 8px;
 }
 
 body {
