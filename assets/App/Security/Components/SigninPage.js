@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from "react-router-dom";
 
 export default class SigninPage extends Component{
 
@@ -31,7 +32,8 @@ export default class SigninPage extends Component{
                     <label htmlFor="password">Confirmer le mot de passe</label>
                     <input id={"password"} placeholder="Veuillez confirmer le mot de passe" type="password"/>
                 </div>
-                <button className={"btn btn-confirm btn--big w-100 mg-t-l"}>S'inscrire</button>
+                <button className={"btn btn-confirm btn--big w-100 mg-t-l mg-b-m"}>S'inscrire</button>
+                <Link to="/login" >Se connecter</Link>
             </form>
         </div>
     }

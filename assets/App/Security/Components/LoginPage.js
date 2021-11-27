@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from "react-router-dom";
 
 export default class LoginPage extends Component{
 
@@ -19,7 +20,8 @@ export default class LoginPage extends Component{
                     <label htmlFor="password">Mot de passe</label>
                     <input id={"password"} placeholder="Mot de passe" type="text"/>
                 </div>
-                <button className={"btn btn-confirm btn--big w-100 mg-t-l"}>Se connecter</button>
+                <button className={"btn btn-confirm btn--big w-100 mg-t-l mg-b-m"}>Se connecter</button>
+                <Link to="/inscription">S'inscrire</Link>
             </form>
         </div>
     }

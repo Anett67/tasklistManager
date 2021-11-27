@@ -76,3 +76,16 @@
 .mg-t-l {
   margin-top: 20px;
 }
+
+/////////////////RESPONSIVE/////////////////////
+
+@media (max-width: 768px) {
+  .w-m-100 {
+    width: 100%;
+  }
+
+  .hide-mobile {
+    display: none;
+  }
+}
+

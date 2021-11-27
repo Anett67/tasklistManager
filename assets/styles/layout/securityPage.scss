@@ -1,15 +1,31 @@
-.image-wrapper{
+.security-active-screen {
+
+  @media (max-width: 768px){
+    background-image: url("../../images/connection_page_img_4.png");
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+#image-wrapper {
   background-image: url("../../images/connection_page_img_4.png");
   background-size: cover;
   background-position: center;
 }
 
 #login-page,
-#signup-page{
+#signup-page {
   margin-top: 20vh;
   margin-bottom: 10px;
   text-align: center;
   color: $springPrimary;
   width: 40%;
   min-width: 400px;
+
+  @media (max-width: 768px){
+    background-color: white;
+    padding: 50px 20px;
+    width: 80%;
+    min-width: 200px;
+  }
 }
