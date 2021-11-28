@@ -25,6 +25,11 @@ class HomeController extends AbstractController
      */
     public function login(SerializerInterface $serializer): Response
     {
+
+        if($this->isGranted('ROLE_USER')){
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render('home/index.html.twig', [
             'page_title' => 'Se connecter',
             'user' => $serializer->serialize($this->getUser(), 'jsonld')
@@ -36,6 +41,10 @@ class HomeController extends AbstractController
      */
     public function signin(SerializerInterface $serializer): Response
     {
+        if($this->getUser()){
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render('home/index.html.twig', [
             'page_title' => 'S\'inscrire',
             'user' => $serializer->serialize($this->getUser(), 'jsonld')

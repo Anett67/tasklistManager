@@ -20,7 +20,7 @@ class TasklistRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Tasklist[] Returns an array of Tasklist objects
+    //  * @return TasklistManager[] Returns an array of TasklistManager objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class TasklistRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Tasklist
+    public function findOneBySomeField($value): ?TasklistManager
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Tasklist extends Component {
+export default class TasklistManager extends Component {
 
     render() {
         return <div>Tasks</div>
