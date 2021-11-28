@@ -5,13 +5,6 @@ import SigninPage from "./Security/SigninPage";
 import TasklistManager from "./TasklistManager/TasklistManager";
 
 export default class App extends Component {
-
-    componentDidMount() {
-        if(window.user){
-            console.log(window.user)
-        }
-    }
-
     render() {
         return(
             <Routes>

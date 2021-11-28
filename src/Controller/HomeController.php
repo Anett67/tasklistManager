@@ -11,6 +11,8 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
+     * @param SerializerInterface $serializer
+     * @return Response
      */
     public function index(SerializerInterface $serializer): Response
     {
@@ -23,7 +25,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/connexion", name="login")
      */
-    public function login(SerializerInterface $serializer): Response
+    public function login(): Response
     {
 
         if($this->isGranted('ROLE_USER')){
@@ -31,23 +33,23 @@ class HomeController extends AbstractController
         }
 
         return $this->render('home/index.html.twig', [
-            'page_title' => 'Se connecter',
-            'user' => $serializer->serialize($this->getUser(), 'jsonld')
+            'page_title' => 'Connexion/Inscription',
+            'user' => null
         ]);
     }
 
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function signin(SerializerInterface $serializer): Response
+    public function signin(): Response
     {
         if($this->getUser()){
             return $this->redirectToRoute('home');
         }
 
         return $this->render('home/index.html.twig', [
-            'page_title' => 'S\'inscrire',
-            'user' => $serializer->serialize($this->getUser(), 'jsonld')
+            'page_title' => 'Connexion/Inscription',
+            'user' => null
         ]);
     }
 }
